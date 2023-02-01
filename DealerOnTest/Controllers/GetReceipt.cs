@@ -1,5 +1,7 @@
 ﻿using DealerOnTest.Models;
 using DealerOnTest.Utilities;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Newtonsoft.Json;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DealerOnTest.Models.Product;
 
 namespace DealerOnTest.Controllers
 {

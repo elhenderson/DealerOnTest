@@ -1,4 +1,6 @@
 ﻿
+using FluentValidation;
+using FluentValidation.Results;
 using Newtonsoft.Json;
 
 namespace DealerOnTest.Models
@@ -21,8 +23,17 @@ namespace DealerOnTest.Models
             IsImported = isImported;
             IsTaxExempt = isTaxExempt;
             Quantity = quantity;
-        }
 
+            try
+            {
+                var productValidator = new ProductValidator();
+                productValidator.ValidateAndThrow(this);
+            }
+            catch
+            {
+                throw;
+            }
+        }
 
         public Product(Product product)
         {
@@ -32,6 +43,19 @@ namespace DealerOnTest.Models
             IsImported = product.IsImported;
             IsTaxExempt = product.IsTaxExempt;
             Quantity = product.Quantity;
+        }
+
+        public class ProductValidator : AbstractValidator<Product>
+        {
+            public ProductValidator()
+            {
+                RuleFor(x => x.Name).NotEmpty();
+                RuleFor(x => x.Price).NotNull();
+                RuleFor(x => x.UnitPrice).NotNull();
+                RuleFor(x => x.IsImported).NotNull();
+                RuleFor(x => x.IsTaxExempt).NotNull();
+                RuleFor(x => x.Quantity).NotEmpty();
+            }
         }
 
         public double GetPrice()

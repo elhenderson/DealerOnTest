@@ -12,8 +12,7 @@ namespace DealerOnTest.Utilities
             
             products.ForEach(p =>
             {
-                IProduct product = new Product(p);
-                TaxDecorator taxDecorator = new TaxedProduct(product);
+                TaxDecorator taxDecorator = new TaxedProduct(p);
                 taxDecorator = new ImportedProduct(taxDecorator);
                 var productPrice = taxDecorator.GetPrice(out double taxAmount);
                 total += productPrice;

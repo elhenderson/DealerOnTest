@@ -1,4 +1,6 @@
 ﻿using DealerOnTest.Models;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,8 +8,10 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using static DealerOnTest.Models.Product;
 
 namespace DealerOnTest.Controllers
 {
@@ -26,14 +30,21 @@ namespace DealerOnTest.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> GetProductsTotal([FromBody] object request)
         {
-
-            var model = new GetReceipt.GetReceiptRequest()
+            try
             {
-                Products = JsonConvert.DeserializeObject<List<Product>>(request.ToString())
-            };
+                var model = new GetReceipt.GetReceiptRequest()
+                {
+                    Products = JsonConvert.DeserializeObject<List<Product>>(request.ToString())
+                };
 
-            var receipt = await mediator.Send(model);
-            return Ok(receipt);
+
+                var response = await mediator.Send(model);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message); 
+            }
         }
     }
 }
