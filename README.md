@@ -11,7 +11,7 @@ VS Code Commands:
 dotnet restore
 dotnet run Program.cs
 
-VS:
+VS:<br>
 \\Restore Nuget packages
 \\Run program
 
