@@ -7,13 +7,13 @@ The core of this implementation is the TaxDecorator abstract class, which wraps 
 ![image](https://user-images.githubusercontent.com/43661059/216128632-b7cb1f1d-c38a-4b87-b0c8-b354dab78911.png)
 
 
-VS Code Commands:
-dotnet restore
-dotnet run Program.cs
+VS Code Commands:<br>
+dotnet restore<br>
+dotnet run Program.cs<br>
 
 VS:<br>
-\\Restore Nuget packages
-\\Run program
+Restore Nuget packages<br>
+Run program<br>
 
 Postman
 
