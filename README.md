@@ -12,8 +12,8 @@ dotnet restore
 dotnet run Program.cs
 
 VS:
-Restore Nuget packages
-Run program
+\Restore Nuget packages
+\Run program
 
 Postman
 
